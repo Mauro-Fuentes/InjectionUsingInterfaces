@@ -1,45 +1,27 @@
 ﻿using UnityEngine;
-
 using UnityEngine.SceneManagement;
-
 using Assets.Code.Interfaces;
-
-
 
 namespace Assets.Code.States
 {
-
-
-
 	public class WonStateScene1 : IStateBase
 	{
-
-
 		private StateManager manager;
-
-
 
 		/////Constructor
 		public WonStateScene1 (StateManager managerRef)
 		{
 			manager = managerRef;
 
-
 			if ( SceneManager.GetActiveScene().name != "Scene0")
 			{
 				SceneManager.LoadScene ("Scene0"); 
 			}
 
-
 			manager.gameDataRef.SetScore ();
 
 		}
 		////
-
-
-
-
-
 
 		public void StateUpdate ()
 		{
@@ -49,14 +31,10 @@ namespace Assets.Code.States
 			// }			
 		}
 
-
-
-
 		public void StateFixedUpdate()
 		{
 
 		}
-
 
 		public void ShowIt ()
 		{
@@ -66,19 +44,12 @@ namespace Assets.Code.States
 			manager.gameDataRef.wonStateSplash,
 			ScaleMode.StretchToFill);
 
-
-
 			if (GUI.Button(new Rect(10, 10, 250, 30),
 			"Click Here or Space key for next Level") ||
 			Input.GetKeyUp (KeyCode.Space))
 			{
 				manager.SwitchState (new PlayStateScene2 (manager));
 			}
-
-
-		}		
-
-		
-
+		}	
 	}
 }

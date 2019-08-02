@@ -7,16 +7,16 @@ using Assets.Code.Interfaces;	// directory of IStateBase
 
 namespace Assets.Code.States
 {
-	public class BeginState	: IStateBase	// Este es UN tipo de State y va a implementar IStateBase
+	public class BeginState	: IStateBase	// This is ONE State and implements IStateBase
 	{	
-		private StateManager manager;		// referencia a la class StateManager... an object type StateManager
-		// manager está para tenér acceso a SwitchState() de StateManager
+		private StateManager manager;		// reference to StateManager class... an object type StateManager
+		// manager gets acces to SwitchState() of StateManager
 		
 	   	/// Constructor ///////////////////////////////////////
-		// cuando cree un Object type BeginState, esto será llamado.
-		public BeginState (StateManager managerRef)		// StateManager managerRef ahora tiene cargado this 
+		// whenever I create an object of type BeginState, this will be called.
+		public BeginState (StateManager managerRef)		// StateManager managerRef now has the parametre THIS
 		{	
-			// igual que StateManager manager, pero ahora es managerRef
+			// same as StateManager manager, but now with managerRef
 
 			manager = managerRef;
 			//Debug.Log("Constructing BeginState");
@@ -29,7 +29,7 @@ namespace Assets.Code.States
 		}
 	   	//////////////////////////////////////////////////////
 
-		// Estos metodos son de la interfaz y los que agregue nuevos
+		// These are methods from the Interface... plus those I want to add.
 		public void StateUpdate ()		
 		{
 			// if (Input.GetKeyUp (KeyCode.Space) )

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using Assets.Code.Interfaces;	// Aquí está la direcc. de IStateBase
+using Assets.Code.Interfaces;	// directory of IStateBase
 
-// VER que Assets.Code.States es el directorio en donde está el .cs
+// Assets.Code.States is the cs. directory
 // The BeginState file is in the States folder
+
 namespace Assets.Code.States
 {
 	public class BeginState	: IStateBase	// Este es UN tipo de State y va a implementar IStateBase

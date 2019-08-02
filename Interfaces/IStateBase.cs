@@ -1,8 +1,8 @@
 namespace Assets.Code.Interfaces
 {
     public interface IStateBase 
-    // Inyección
-    // estos son todos los métododos que StateManage va a usar en vez de los de Unity. 
+    // Injection
+    // These are the method (contracts) that StateManager will use instead of Unity's
     {
         void StateUpdate();
         

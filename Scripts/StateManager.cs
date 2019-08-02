@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using Assets.Code.States;			// todos los estodos que utilizan IStateBase
-using Assets.Code.Interfaces;		//agrego la interfaz IStateBase
+using Assets.Code.States;			// every state that uses IStateBase
+using Assets.Code.Interfaces;		// interface IStateBase
 
 public class StateManager : MonoBehaviour
 {
-	private IStateBase activeState;			// que sea cualquier objeto tipo IStateBase.
-	// hasta acá activeState es NULL
-	// Más tarde esta variable representará cualquier objeto que cumpla con IStateBase.	
+	private IStateBase activeState;			// any objet of type IStateBase.
+	// up to here activeState is NULL
+	// in the future, this variable would represet any object that complies with IStateBase.
 
 	private static StateManager instanceStateManagerRef; // Singleton
 
-	[HideInInspector] public GameData gameDataRef; // Will be called in Start()
+	[HideInInspector] public GameData gameDataRef; 		// Will be called in Start()
 
 	void Awake()
 	{
 		//Singleton
 		if ( instanceStateManagerRef == null )
 		{
-			instanceStateManagerRef = this; // o sea, la instancia... ya está... es esta.
-			DontDestroyOnLoad (gameObject);	// o sea, no destruyas este gameObject si cambia la escena
+			instanceStateManagerRef = this;
+			DontDestroyOnLoad (gameObject);		// Don't destroy this in case we change scenes. Not a good practice thou.
 		}
 		else
 		{
@@ -31,33 +31,31 @@ public class StateManager : MonoBehaviour
 	void Start () 
 	{
 		activeState = new BeginState (this);	
-		// New Object del tipo BeginState-IStateBase
-		// al crear un nuevo BeginState Object... el Constructor en BeginState class es llamado:
-			
-		/* 	public BeginState(StateManager managerRef)	// StateManager managerRef ahora cargado con this
-			{
-				manager = managerRef;
-			}
-		*/
-		// Esto viaja a BeginState Script con el parámetro StateManager Objeto Componente.
+		// New Object of type BeginState-IStateBase
 
-		// y vuelve creado e inicializado.
+		// when we create a new BeginState Object... the BeginState constructor is called (check there)
+			/* 	public BeginState(StateManager managerRef)	// StateManager managerRef ahora cargado con this
+				{
+					manager = managerRef;
+				}
+			*/
+
+		// Thista data travels to BeginState Script with StateManager managerRef parametre.
+		// then returns already created and initialised ready to work.
 
 		gameDataRef = GetComponent<GameData>();
 	}
 
-
-	void Update () 		// StateManager usa el UpDate() de Unity para delegar el control al activeState
+	void Update () 		// StateManager uses Unity's UpDate() and relies on activeState (control)
 	{
 		if (activeState != null)
 		{
-			activeState.StateUpdate ();	//activeState es cualquiera que esté activa...y como
-			// todas tiene un StateUpdate porque se ven forzadas por IStateBase, no hay problema.
+			activeState.StateUpdate ();	//activeState is any active one
+			// The thing is that, as every StateUpdate is bound by IStateBase... it's ok.
 
-			//activeState ahora tiene una referencia a BeginState.
+			//activeState now has a reference to BeginState.
 		}
 	}
-
 
 	void OnGUI()
 	{
@@ -67,12 +65,10 @@ public class StateManager : MonoBehaviour
 		}
 	}
 
-
-	public void SwitchState (IStateBase newState)	//paso a SwitchState el nuevo estado que quiero que esté activo.
+	public void SwitchState (IStateBase newState)	//go to SwitchState, the new state I want active.
 	{
 		activeState = newState;
 	}
-
 
 	public void Restart()
 	{

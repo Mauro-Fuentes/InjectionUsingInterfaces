@@ -7,10 +7,8 @@ public class GameData : MonoBehaviour
 	private int playerLivesSelected = 2; // the ones on the Intro
 	private int SceneBeginningScore;
 
-	[HideInInspector]
-	public int playerLives;
-	[HideInInspector]
-	public int score;
+	[HideInInspector] public int playerLives;
+	[HideInInspector] public int score;
 
 	//cameras
 	public List<GameObject> cameras;
